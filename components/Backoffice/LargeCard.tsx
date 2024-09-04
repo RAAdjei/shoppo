@@ -1,7 +1,7 @@
 import React from 'react'
 import { MdInventory } from "react-icons/md";
 
-const LargeCard = ({className}) => {
+const LargeCard = ({className}: {className: string}) => {
   return (
     <div className={`rounded-lg text-white ${className}`}>
         <MdInventory />
