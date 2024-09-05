@@ -6,12 +6,16 @@ import TextAreaInput from '@/components/Form Inputs/FormTextInput'
 import { useForm } from 'react-hook-form'
 import SubmitButton from '@/components/Form Inputs/SubmitButton'
 import { generateSlug } from '@/lib/generateSlug'
+import ImageInput from '@/components/Form Inputs/ImageInputs'
 
-const NewCategory = () => {
+const NewProduct = () => {
+  const [imageUrl, setImageUrl] = React.useState("");
+  const [loading, setLoading] = React.useState(false);
     const { register, handleSubmit, formState:{errors} } = useForm();
     async function onSubmit(data: any) {
       const slug = generateSlug(data.title);
       data.slug = slug;
+      data.imageUrl = imageUrl;
         console.log(data);
     }
   return (
@@ -32,7 +36,15 @@ const NewCategory = () => {
             name="description"
             register={register}
             errors={errors}
-          />                                   
+          />   
+
+          <ImageInput
+          label='Product Image' 
+          imageUrl={imageUrl}
+          setImageUrl={setImageUrl}
+          endpoint="productImageUploader"
+          className="col-span-full"
+          />                                
         </div>
         <SubmitButton isLoading={false} buttonTitle="Create Product" loadingButttonTitle="Creating Product please wait..."/>
 
@@ -43,4 +55,4 @@ const NewCategory = () => {
   )
 }
 
-export default NewCategory
+export default NewProduct
