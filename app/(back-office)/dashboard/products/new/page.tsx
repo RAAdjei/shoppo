@@ -12,6 +12,8 @@ import SelectInput from '@/components/Form Inputs/SelectInput'
 import ArrayItemsInput from '@/components/Form Inputs/ArrayItemsInput'
 import ToggleInput from '@/components/Form Inputs/ToggleInput'
 
+// mongodb pass: aeQYLNYGDtgTXRcP
+// IP address (102.176.94.214) 
 
 const NewProduct = () => {
   const [imageUrl, setImageUrl] = React.useState("");
