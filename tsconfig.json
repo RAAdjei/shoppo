@@ -21,6 +21,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/Backoffice/PageHeader.tsx", "components/Backoffice/FormHeader.tsx", "components/Backoffice/Heading.tsx", "components/Backoffice/TableActions.tsx", "components/Form Inputs/FormTextInput.jsx", "components/Form Inputs/ImageInputs.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/Backoffice/PageHeader.tsx", "components/Backoffice/FormHeader.tsx", "components/Backoffice/Heading.tsx", "components/Backoffice/TableActions.tsx", "components/Form Inputs/FormTextInput.jsx", "components/Form Inputs/ImageInputs.jsx", "components/Form Inputs/SelectInput.jsx", "components/Form Inputs/ArrayItemsInput.jsx"],
   "exclude": ["node_modules"]
 }
