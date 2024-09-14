@@ -12,10 +12,8 @@ import SelectInput from '@/components/Form Inputs/SelectInput'
 import ArrayItemsInput from '@/components/Form Inputs/ArrayItemsInput'
 import ToggleInput from '@/components/Form Inputs/ToggleInput'
 
-// mongodb pass: aeQYLNYGDtgTXRcP
-// IP address (102.176.94.214) 
 
-const NewProduct = () => {
+const NewCategory = () => {
   const [imageUrl, setImageUrl] = React.useState("");
   const categories = [
     {
@@ -26,88 +24,6 @@ const NewProduct = () => {
     {
       id:2,
       title: "Electronics and Gadgets"
-    },
-
-    {
-      id:3,
-      title: "Beauty and Personal Care"
-    },
-
-    {
-      id:4,
-      title: "Groceries and Food"
-    },
-
-    {
-      id:5,
-      title: "Home and Living"
-    },
-
-    {
-      id:6,
-      title: "Sports and Fitness"
-    },
-
-    {
-      id:7,
-      title: "Books, Stationery, and Office Supplies"
-    },
-
-    {
-      id:8,
-      title: "Toys and Games"
-    },
-
-    {
-      id:9,
-      title: "Jewelry and Watches"
-    },
-
-    {
-      id:10,
-      title: "Health and Wellness"
-    },
-
-    {
-      id:11,
-      title: "Automotive and Accessories"
-    },
-
-    {
-      id:12,
-      title: "Entertainment and Media"
-    },
-
-    {
-      id:13,
-      title: "Pet Supplies"
-    },
-
-    {
-      id:14,
-      title: "Gifts and Souvenirs"
-    },
-
-    {
-      id:15,
-      title: "Footwear"
-    },
-  ]
-
-  const vendors = [
-    {
-      id:1,
-      title: "vendor1"
-    },
-
-    {
-      id:2,
-      title: "vendor2"
-    },
-
-    {
-      id:3,
-      title: "vendor3"
     },
 
   ]
@@ -128,80 +44,63 @@ const NewProduct = () => {
         console.log(data);
         makePostRequest(
           setLoading,
-          'api/products',
+          'api/categories',
           data,
-          'Product',
+          'Category',
           reset
         );
         setImageUrl("");
     }
   return (
     <div>
-        <FormHeader title="New Product"/>
+        <FormHeader title="New Category"/>
         <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-4xl p-4 bg-white border border-gray-200 rounded-lg 
         shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 mx-auto my-3">
         
         <div className='grid gap-4 sm:grid-cols-2 sm:gap-6'>
             <FormTextInput
-            label="Product Name"
+            label="Category Name"
             name = "title"
             register={register}
             errors={errors}
             /> 
 
-            <SelectInput
+            {/* <SelectInput
               label="Select Category"
-              name="categoryId"
+              name="categoryIds"
               register={register}
               className="w-full"
               options={categories}
               // multiple={true}
-            />
+            /> */}
 
-            <SelectInput
-              label="Select Vendor"
-              name="vendorId"
-              register={register} 
-              className="w-full"
-              options={vendors}
-              // multiple={true}
-            />
-
-            <FormTextInput
-              label="Product Barcode"
-              name="barcode"
-              register={register}
-              className="w-full"
-              errors={errors}
-            />
-
-            <FormTextInput
+            {/* <FormTextInput
             label="Product Price"
-            name = "productPrice"
-            type='number' 
+            name = "price"
+            type='number'
             register={register}
             errors={errors}
             className='w-full'
-            /> 
+            />  */}
 
             <TextAreaInput
-            label="Product Description"
+            label="Category Description"
             name="description"
             register={register}
             errors={errors}
           />   
 
-          <ArrayItemsInput setTags={setTags} tags={tags} itemTitle = "Tag"/>
+          {/* <ArrayItemsInput setTags={setTags} tags={tags} itemTitle = "Tag"/> */}
           
           <ImageInput
-          label='Product Image' 
+          label='Category Image' 
           imageUrl={imageUrl}
           setImageUrl={setImageUrl}
           endpoint="productImageUploader"
           className="col-span-full"
           /> 
 
-        <ToggleInput label="Publish Product" 
+        <ToggleInput label="Publish Category" 
         name="isActive" 
         trueTitle="Active" 
         falseTitle="Draft"
@@ -209,7 +108,7 @@ const NewProduct = () => {
         />  
                             
         </div>
-        <SubmitButton isLoading={loading} buttonTitle="Create Product" loadingButttonTitle="Creating Product please wait..."/>
+        <SubmitButton isLoading={loading} buttonTitle="Create Category" loadingButttonTitle="Creating Category please wait..."/>
 
         </form>
 
@@ -218,4 +117,4 @@ const NewProduct = () => {
   )
 }
 
-export default NewProduct
+export default NewCategory

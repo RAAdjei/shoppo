@@ -12,3 +12,50 @@ datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")
 }
+
+model Category {
+   id       String    @id @default(auto()) @map("_id") @db.ObjectId
+  title      String 
+  slug       String @unique
+  isActive   Boolean
+  imageUrl  String?
+  description String?   
+  
+  products  Product[]  
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+}
+
+model Product {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  title         String    
+  slug          String    @unique
+  description   String?
+  imageUrl      String?
+  barcode       String?
+  isActive      Boolean
+  productPrice  Float
+  tags          String[]
+   
+  
+  category   Category  @relation(fields: [categoryId], references: [id])
+  categoryId String @db.ObjectId
+
+  vendor   Vendor  @relation(fields: [categoryId], references: [id])
+  vendorId String @db.ObjectId
+
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime? @updatedAt
+}
+
+model Vendor {
+   id       String    @id @default(auto()) @map("_id") @db.ObjectId
+  vendorName String
+  phone      String
+  email       String?
+  vendorAddress String
+  notes       String?
+  isActive    Boolean
+  products   Product[]
+}

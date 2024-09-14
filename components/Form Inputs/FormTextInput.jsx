@@ -1,4 +1,4 @@
-export default function TextInput({
+export default function FormTextInput({
     label,
     name,
     register,

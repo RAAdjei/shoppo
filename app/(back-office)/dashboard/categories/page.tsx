@@ -7,8 +7,8 @@ import React from 'react'
 const page = () => {
   return (
     <div>
-      <PageHeader heading="Products" href="import Heading from '@/components/Backoffice/Heading" 
-      linkTitle="Add Products"/>
+      <PageHeader heading="Categories" href="import Heading from '@/components/Backoffice/Heading'" 
+      linkTitle="Add Categories"/>
 
       <TableActions/>
 
