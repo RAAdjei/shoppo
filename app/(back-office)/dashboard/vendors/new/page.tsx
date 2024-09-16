@@ -8,9 +8,12 @@ import SubmitButton from '@/components/Form Inputs/SubmitButton'
 import { generateUserCode } from '@/lib/generateUserCode'
 import { makePostRequest } from '@/lib/apiRequest'
 import ToggleInput from '@/components/Form Inputs/ToggleInput'
+import ImageInput from '@/components/Form Inputs/ImageInputs'
+
  
 
 const NewVendor = () => {
+  const [imageUrl, setImageUrl] = React.useState("");
   const [loading, setLoading] = React.useState(false);
     const { register, watch, reset, handleSubmit, formState:{errors} } = useForm({
       defaultValues:{
@@ -21,7 +24,7 @@ const NewVendor = () => {
     console.log(isActive);
     async function onSubmit(data: any) {
       const code = generateUserCode('SHPP', data.name)
-      
+      data.imageUrl = imageUrl;
       data.code = code;
       console.log(data);
         makePostRequest(
@@ -31,6 +34,8 @@ const NewVendor = () => {
           'Vendor',
           reset
         );
+        setImageUrl("");
+        
     }
   return (
     <div>
@@ -77,6 +82,14 @@ const NewVendor = () => {
             errors={errors}
             isRequired={false}
           />   
+
+          <ImageInput
+          label='Vendor Profile Image' 
+          imageUrl={imageUrl}
+          setImageUrl={setImageUrl}
+          endpoint="vendorprofileUploader"
+          className="col-span-full"
+          />
         
 
         <ToggleInput label="Vendor's Status" 

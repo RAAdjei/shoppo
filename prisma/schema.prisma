@@ -42,20 +42,71 @@ model Product {
   category   Category  @relation(fields: [categoryId], references: [id])
   categoryId String @db.ObjectId
 
-  vendor   Vendor  @relation(fields: [categoryId], references: [id])
-  vendorId String @db.ObjectId
+  user   User @relation(fields: [userId], references: [id])
+  userId String  @db.ObjectId 
 
   createdAt  DateTime  @default(now())
   updatedAt  DateTime? @updatedAt
 }
 
-model Vendor {
+enum UserRole {
+  USER
+  ADMIN
+  VENDOR
+}
+
+model User {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  products   Product[]
+  
+  vendorProfile   VendorProfile?
+  role           UserRole  @default(USER)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  accounts      Account[]
+  sessions      Session[]
+}
+
+model VendorProfile{
    id       String    @id @default(auto()) @map("_id") @db.ObjectId
   vendorName String
   phone      String
   email       String?
   vendorAddress String
+  profileImageUrl   String?
   notes       String?
   isActive    Boolean
-  products   Product[]
+
+  user   User @relation(fields: [userId], references: [id])
+  userId String @db.ObjectId @unique 
+
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime? @updatedAt
+}
+
+model Account {
+id       String    @id @default(auto()) @map("_id") @db.ObjectId
+  userId             String @db.ObjectId
+  type               String
+  provider           String
+  providerAccountId  String
+  refresh_token      String?
+  access_token       String?
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String?
+  session_state      String?
+  user               User      @relation(fields: [userId], references: [id])
+}
+
+model Session {
+id       String    @id @default(auto()) @map("_id") @db.ObjectId
+  sessionToken String    @unique
+  userId       String @db.ObjectId
+  expires      DateTime
+  user         User      @relation(fields: [userId], references: [id])
 }

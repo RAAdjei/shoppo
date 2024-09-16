@@ -27,8 +27,8 @@ import { NextResponse } from "next/server";
 
 export async function POST (request:any){
     try{
-        const {code, vendorName, phone, email, vendorAddress, notes, isActive} = await request.json(); 
-        const newVendor = {code, vendorName, phone, email, vendorAddress, notes, isActive} 
+        const {code, vendorName, phone, email, vendorAddress, profileImageUrl, notes, isActive} = await request.json(); 
+        const newVendor = {code, vendorName, phone, email, vendorAddress, profileImageUrl, notes, isActive} 
         console.log(newVendor)
         return NextResponse.json(newVendor)
     } catch (error){

@@ -1,9 +1,9 @@
 import React from 'react'
 
-const  UpdateProduct = () => {
+const  UpdateVendor = () => {
   return (
-    <div> UpdateProduct</div>
+    <div> UpdateVendor</div>
   )
 }
 
-export default  UpdateProduct
+export default  UpdateVendor

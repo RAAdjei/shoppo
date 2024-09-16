@@ -11,6 +11,7 @@ import { makePostRequest } from '@/lib/apiRequest'
 import SelectInput from '@/components/Form Inputs/SelectInput'
 import ArrayItemsInput from '@/components/Form Inputs/ArrayItemsInput'
 import ToggleInput from '@/components/Form Inputs/ToggleInput'
+import { useRouter } from 'next/navigation'
 
 // mongodb pass: aeQYLNYGDtgTXRcP
 // IP address (102.176.94.214) 
@@ -119,6 +120,11 @@ const NewProduct = () => {
         isActive: true,
       }
     });
+    const router = useRouter();
+    function redirect(){
+      router.push("/dashboard/products")
+    }
+
     const isActive = watch("isActive");
     console.log(isActive);
     async function onSubmit(data: any) {
