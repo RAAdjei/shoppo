@@ -11,11 +11,13 @@
   "dependencies": {
     "@prisma/client": "^5.19.1",
     "@uploadthing/react": "^6.7.2",
+    "bcrypt": "^5.1.1",
     "flowbite-react": "^0.10.1",
     "mongodb": "^6.9.0",
     "next": "14.2.5",
     "next-auth": "^4.24.7",
     "next-runtime-env": "^3.2.2",
+    "next-themes": "^0.3.0",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.53.0",
@@ -26,6 +28,7 @@
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.8",
+    "@types/bcrypt": "^5.0.2",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

@@ -137,7 +137,7 @@ const NewProduct = () => {
           'api/products',
           data,
           'Product',
-          reset
+          reset, redirect
         );
         setImageUrl("");
     }

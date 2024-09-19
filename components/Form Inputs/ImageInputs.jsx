@@ -2,6 +2,7 @@ import { UploadDropzone } from "@/lib/uploadthing";
 import { FaPencil } from "react-icons/fa6";
 import Image from "next/image";
 import React from "react";
+import toast from "react-hot-toast";
 
 export default function ImageInput({
   label,
@@ -44,10 +45,12 @@ export default function ImageInput({
           onClientUploadComplete={(res) => {
             setImageUrl(res[0].url);
             // Do something with the response
+            toast.success("Image Upload Complete")
             console.log("Files: ", res);
             console.log("Upload Completed");
           }}
           onUploadError={(error) => {
+            toast.error("Image Upload Failed, Try again")
             // Do something with the error.
             console.log(`ERROR! ${error.message}`, error);
           }}

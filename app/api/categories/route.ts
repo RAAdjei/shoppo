@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import db from '@/lib/db'
+import db from '@/lib/db';
 
 export async function POST (request:any){
     try{
@@ -12,9 +12,13 @@ export async function POST (request:any){
         if (exisitingCategory){
             return NextResponse.json({
                 message: "Category already exists",
-            },{status:409})
+            },{status:409});
         }
-        const newCategory = {title, slug, imageUrl, desription, isActive} 
+        const newCategory = await db.category.create({
+            data:{
+                title, slug, imageUrl, desription, isActive
+            }
+        });
         console.log(newCategory)
         return NextResponse.json(newCategory)
     } catch (error){
@@ -29,7 +33,7 @@ export async function POST (request:any){
 
 export async function GET(request:any){
     try{
-        const categories = await db.findMany({
+        const categories = await db.category.findMany({
             orderBy: {
                 createdAt: "desc",
             },

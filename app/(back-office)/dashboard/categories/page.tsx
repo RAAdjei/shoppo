@@ -7,7 +7,7 @@ import React from 'react'
 const page = () => {
   return (
     <div>
-      <PageHeader heading="Categories" href="import Heading from '@/components/Backoffice/Heading'" 
+      <PageHeader heading="Categories" href="/dashboard/categories/new" 
       linkTitle="Add Categories"/>
 
       <TableActions/>

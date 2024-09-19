@@ -6,12 +6,7 @@ type ResetFunction = () => void;
 type RedirectFunction = () => void;
 
 export async function makePostRequest(
-  setLoading: SetLoading,
-  endpoint: string,
-  data: Record<string, unknown>,
-  resourceName: string,
-  reset: ResetFunction
-): Promise<void> {
+setLoading: SetLoading, endpoint: string, data: Record<string, unknown>, resourceName: string, reset: ResetFunction, redirect: () => void): Promise<void> {
   try {
     setLoading(true);
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
@@ -28,6 +23,7 @@ export async function makePostRequest(
       setLoading(false);
       toast.success(`New ${resourceName} Created Successfully`);
       reset();
+      redirect();
     } else {
       setLoading(false);
       if (response.status === 409) {

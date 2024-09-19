@@ -9,6 +9,7 @@ import { generateUserCode } from '@/lib/generateUserCode'
 import { makePostRequest } from '@/lib/apiRequest'
 import ToggleInput from '@/components/Form Inputs/ToggleInput'
 import ImageInput from '@/components/Form Inputs/ImageInputs'
+import { useRouter } from 'next/navigation'
 
  
 
@@ -20,6 +21,10 @@ const NewVendor = () => {
         isActive: true,
       }
     });
+    const router = useRouter();
+    function redirect(){
+      router.push("/dashboard/vendors")
+    }
     const isActive = watch("isActive");
     console.log(isActive);
     async function onSubmit(data: any) {
@@ -32,7 +37,7 @@ const NewVendor = () => {
           'api/vendors',
           data,
           'Vendor',
-          reset
+          reset, redirect
         );
         setImageUrl("");
         

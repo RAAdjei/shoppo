@@ -63,7 +63,10 @@ const Navbar = () => {
               </p> */}
             </div>
           ) : (
-            <div className="flex flex-row">
+            <div className="flex flex-row justify-center items-center">
+              <Link href="/authVendor">
+                <div className="flex mr-4 font-bold hover:text-slate-600 font-nunito">Register Your Business </div>
+              </Link>
               <Link href="/auth">
                 <Image
                   src={profile}
@@ -83,7 +86,7 @@ const Navbar = () => {
 
           <div className="lg:flex hidden items-center">
             <Link href="/add-listing">
-              <button className="bg-shopYellow text-black font-nunito font-bold text-[13px] px-5 py-3 rounded-[25px] ">
+              <button className="bg-shopYellow text-black hover:bg-yellow-300 font-nunito font-bold text-[13px] px-5 py-3 rounded-[25px] ">
                 Sign up
               </button>
             </Link>

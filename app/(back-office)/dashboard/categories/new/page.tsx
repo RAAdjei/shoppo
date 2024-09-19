@@ -9,8 +9,8 @@ import { generateSlug } from '@/lib/generateSlug'
 import ImageInput from '@/components/Form Inputs/ImageInputs'
 import { makePostRequest } from '@/lib/apiRequest'
 import SelectInput from '@/components/Form Inputs/SelectInput'
-import ArrayItemsInput from '@/components/Form Inputs/ArrayItemsInput'
 import ToggleInput from '@/components/Form Inputs/ToggleInput'
+import { useRouter } from 'next/navigation'
 
 
 const NewCategory = () => {
@@ -27,7 +27,6 @@ const NewCategory = () => {
     },
 
   ]
-  const [tags, setTags] = useState([])
 
   const [loading, setLoading] = React.useState(false);
     const { register, watch, reset, handleSubmit, formState:{errors} } = useForm({
@@ -35,6 +34,10 @@ const NewCategory = () => {
         isActive: true,
       }
     });
+    const router = useRouter();
+    function redirect() {
+      router.push("/dashboard/categories")
+    }
     const isActive = watch("isActive");
     console.log(isActive);
     async function onSubmit(data: any) {
@@ -47,7 +50,7 @@ const NewCategory = () => {
           'api/categories',
           data,
           'Category',
-          reset
+          reset, redirect
         );
         setImageUrl("");
     }
