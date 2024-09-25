@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 import FormTextInput from "../Form Inputs/FormTextInput";
 
-export default function RegisterForm({role}) {
+export default function RegisterForm({role ="USER"}) {
   const router = useRouter();
   const {
     register,
@@ -36,7 +36,14 @@ export default function RegisterForm({role}) {
         setLoading(false);
         toast.success("User Created Successfully");
         reset();
-        router.push("/");
+
+        //const userRole = responseData.data.role;
+        
+        if(role === "USER"){
+          router.push("/");
+        }else{
+          router.push(`/onboarding/${responseData.data.id}`);
+        }
       } else {
         setLoading(false);
         if (response.status === 409) {
@@ -59,7 +66,7 @@ export default function RegisterForm({role}) {
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
         <FormTextInput 
         label="" 
-        name="name" 
+        name="role" 
         register={register} 
         errors={errors} 
         defaultValue={role}

@@ -41,7 +41,7 @@ const Auth: React.FC = () => {
             <h2 className="font-bold">Create a new account</h2>
             </div>
           <div className="mx-7">
-            <RegisterForm role="USER"/>
+            <RegisterForm role="VENDOR"/>
           </div>
 
         </div>
