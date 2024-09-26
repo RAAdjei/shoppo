@@ -69,7 +69,7 @@
 import React from 'react';
 
 interface Vendor {
-  vendorName: string;
+  name: string;
   vendorAddress: string;
   location: {
     latitude: number;
@@ -96,7 +96,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({ products, onSelectLocatio
           <h2 className="text-xl font-bold">{product.title}</h2>
           {product.vendors.map((vendor, index) => (
             <div key={index} className="mt-2">
-              <p>{vendor.vendorName}</p>
+              <p>{vendor.name}</p>
               <p>{vendor.vendorAddress}</p>
               <button
                 className="text-blue-500"

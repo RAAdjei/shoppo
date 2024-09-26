@@ -38,7 +38,7 @@ import { getCoordinatesFromAddress } from '../../../lib/nominatim';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'POST') {
-    const { vendorName, phone, email, vendorAddress, userId } = req.body;
+    const { name, phone, email, vendorAddress, userId } = req.body;
 
     try {
       const coordinates = await getCoordinatesFromAddress(vendorAddress);
@@ -52,7 +52,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
       const vendor = await prisma.vendor.create({
         data: {
-          vendorName,
+          name,
           phone,
           email,
           vendorAddress,

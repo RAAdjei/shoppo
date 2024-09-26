@@ -22,7 +22,8 @@ import db from '@/lib/db';
 
 export async function POST (request:any){
     try{
-        const {title, slug, imageUrl, desription, isActive, productPrice, barcode, tags} = await request.json(); 
+        const {title, slug, userId, categoryId, imageUrl, desription, isActive, productPrice, barcode, tags} = await request.json(); 
+        // const productData = await request.json(); 
         const exisitingProduct = await db.product.findUnique({
             where: {
                 slug,
@@ -35,7 +36,16 @@ export async function POST (request:any){
         }
         const newProduct = await db.product.create({
             data:{
-                title, slug, imageUrl, desription, isActive, productPrice, barcode, tags
+                title, 
+                slug, 
+                imageUrl, 
+                userId,
+                categoryId,
+                desription, 
+                isActive, 
+                productPrice: parseFloat(productPrice), 
+                barcode, 
+                tags
             }
         });
         console.log(newProduct)

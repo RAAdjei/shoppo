@@ -31,22 +31,42 @@ const MapMain = () => {
 
     const handleSearch = async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      const response = await fetch('/api/products/search', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ query: e.currentTarget.searchQuery.value }),
-      });
+      const query = e.currentTarget.searchQuery.value.toLowerCase();
+
+      const response = await fetch('/MOCK_DATA.json');
       const data = await response.json();
-      setProducts(data);
-      const newLocations = data.flatMap((product: any) =>
-        product.vendors.map((vendor: any) => ({
-          lat: vendor.location.latitude,
-          lng: vendor.location.longitude,
-        }))
+
+      const filteredAddresses = data.addresses.filter((address: any) =>
+        address.products.some((product: string) => product.toLowerCase().includes(query))
       );
+
+      const newLocations = filteredAddresses.map((address: any) => ({
+        lat: address.latitude,
+        lng: address.longitude,
+      }));
+
+      setProducts(filteredAddresses);
       setLocations(newLocations);
+  
+
+    // const handleSearch = async (e: React.FormEvent<HTMLFormElement>) => {
+    //   e.preventDefault();
+    //   const response = await fetch('/api/products/search', {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify({ query: e.currentTarget.searchQuery.value }),
+    //   });
+      // const data = await response.json();
+      // setProducts(data);
+      // const newLocations = data.flatMap((product: any) =>
+      //   product.vendors.map((vendor: any) => ({
+      //     lat: vendor.location.latitude,
+      //     lng: vendor.location.longitude,
+      //   }))
+      // );
+      // setLocations(newLocations);
     };
 
 
@@ -101,7 +121,7 @@ const MapMain = () => {
         {isOpen && (
           <div className="absolute z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
             <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdown-button">
-              {['All categories','Mockups', 'Templates', 'Design', 'Logos'].map((category) => (
+              {['All categories',"Fashion and Apparel", "Electronics and Gadgets", "Groceries and Food", "Home and Living", "Sports and Fitness", "Health and Wellness"].map((category) => (
                 <li key={category}>
                   <button
                     type="button"
@@ -151,8 +171,23 @@ const MapMain = () => {
                 </div>
             </div>
 
-            <div className='bg-slate-500'>
+            <div className=''>
+
             <SearchResults products={products} onSelectLocation={(location) => setLocations([location])} />
+
+
+            <div className="w-1/3 p-4 overflow-y-auto">
+        {products.map((product, index) => (
+          <div key={index} className="mb-4">
+            <h2 className="text-xl font-bold">{product.address}</h2>
+            <p>Latitude: {product.latitude}</p>
+            <p>Longitude: {product.longitude}</p>
+            <p>Products: {product.products.join(', ')}</p>
+          </div>
+        ))}
+      </div>              
+
+
             </div>
 
         </div>

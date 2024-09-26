@@ -62,6 +62,7 @@ model User {
   name          String?
   email         String?   @unique
   password      String
+  vendorAddress String
   emailVerified DateTime?
   products   Product[]
   location      Location?
@@ -76,14 +77,15 @@ model User {
 
 model VendorProfile{
    id       String    @id @default(auto()) @map("_id") @db.ObjectId
-  vendorName String
+  name String
   phone      String
   email       String?
   vendorAddress String
-  location      Location @relation(fields: [locationId], references: [id])
-  locationId    String @db.ObjectId @unique
+  location      Location? @relation(fields: [locationId], references: [id])
+  locationId    String? @db.ObjectId @unique
   profileImageUrl   String?
   notes       String?
+  products    String[]
   isActive    Boolean
 
   user   User @relation(fields: [userId], references: [id])

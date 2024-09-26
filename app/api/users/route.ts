@@ -5,7 +5,7 @@ import bcrypt from 'bcrypt'
 export async function POST(request:any) {
     try{
         //extract the credentials
-        const { name, email, password, role } = await request.json()
+        const { name, email, password, vendorAddress, products, role } = await request.json()
         // check if the user alreadly exists in the db
         const exisitingVendor = await db.user.findUnique({
             where:{
@@ -25,6 +25,8 @@ export async function POST(request:any) {
                 name, 
                 email, 
                 password: hashedPassword,
+                vendorAddress,
+                products,
                 role,
             },
         });

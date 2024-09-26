@@ -94,7 +94,15 @@ export default function RegisterForm({role ="USER"}) {
         name="password" 
         register={register} 
         errors={errors} 
-        type="password"/> 
+        type="password"/>
+
+        <FormTextInput 
+        label="Address" 
+        name="vendorAddress" 
+        register={register} 
+        errors={errors} 
+        type="text"/>
+
         {loading ? (
             <button
             disabled
